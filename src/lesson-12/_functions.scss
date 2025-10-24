@@ -1,0 +1,5 @@
+@function strip-unit($value) {
+  @return $value;
+}
+
+@debug strip-unit(45px);
