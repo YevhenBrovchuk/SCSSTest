@@ -1,5 +1,18 @@
+@use "sass:math";
+
 @function strip-unit($value) {
+  @if type-of($value) != "number" {
+    @error "#{$value} is not a number";
+  }
+
+  @if type-of($value) == "number" and not unitless($value) {
+    @debug math.div($value, ($value * 0+1));
+    @return math.div($value, ($value * 0+1));
+  }
+  // https://www.youtube.com/watch?v=zR7_UfGqpao
   @return $value;
 }
 
-@debug strip-unit(45px);
+.body {
+  font-size: strip-unit(10px);
+}
